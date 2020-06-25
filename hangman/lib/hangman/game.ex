@@ -19,12 +19,12 @@ defmodule Hangman.Game do
 
     def make_move(game= %{ game_state: state }, _guess) when state in [:won, :lost] do
         game |> 
-        return_with_tally
+        return_with_tally()
     end
 
     def make_move(game, guess) do
         accept_move(game, guess, MapSet.member?(game.used, guess))
-        |> return_with_tally
+        |> return_with_tally()
     end
 
     def tally(game) do
@@ -64,16 +64,16 @@ defmodule Hangman.Game do
         }     
     end
 
-    defp may_won(true), do: :won
-    defp may_won(_), do: :good_guess
-
     defp reveal_guessed(letters, used) do
         letters 
         |> Enum.map(fn letter -> reveal_letter(letter, MapSet.member?(used, letter)) end)
     end
 
     defp reveal_letter(letter, _in_word = true), do: letter
-    defp reveal_letter(letter, _in_word), do: "_"
+    defp reveal_letter(letter, _not_in_word), do: "_"
+
+    defp may_won(true), do: :won
+    defp may_won(_), do: :good_guess
    
     
     defp return_with_tally(game) do

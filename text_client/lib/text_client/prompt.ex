@@ -1,4 +1,4 @@
-defmodule TextClient.Prompter do
+defmodule TextClient.Prompt do
 
     alias TextClient.State
     

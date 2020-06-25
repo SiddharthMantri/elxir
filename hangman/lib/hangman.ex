@@ -2,6 +2,7 @@ defmodule Hangman do
   alias Hangman.Game, as: Game # Could be used as alias Hangman.Game
   def new_game() do
     { :ok, pid } = Supervisor.start_child(Hangman.Supervisor, [])
+    pid
   end
   # defdelegate tally(game), to:  Game
   # defdelegate make_move(game, guess), to: Game
